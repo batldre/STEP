@@ -1,23 +1,43 @@
+html {
+    background: rgba(153, 153, 153, 0.15);
+}
+
+body {
+    font-family: 'Martel Sans';font-size: 22px;
+}
+
 #content {
     padding-top: 20px;
     text-align: center;
     position: static
 }
+
 #summary {
     position: absolute;
     left: 15px;
-    width:30%;
+    width: 30%;
 }
+
 #picture {
     position: absolute;
     right: 15px;
 }
 
-html {
-    background: rgba(153, 153, 153, 0.15);
+#header {
+    padding: 5px 100px;
+    background-size: 10% 10%;
+    background-position: center;
+    border-radius: 25px;
+    background-color: white;
+    text-align: center;
 }
+
+#greeting-container {
+  margin-top: 20px;
+}
+
 .button {
-  background-color:rgb(255,255,255); /* Green */
+  background-color: rgb(255 ,255, 255); /* Green */
   border: 2px solid black;
   color: black;
   padding: 16px 32px;
@@ -35,17 +55,6 @@ html {
     border: 2px solid black;
 }
 
-#header {
-    padding: 5px 100px;
-    background-size:10% 10%;
-    background-position: center;
-    border-radius: 25px;
-    background-color: white;
-    text-align: center;
-}
 
-#greeting-container {
-  margin-top: 20px;
-}
 
 

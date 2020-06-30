@@ -16,27 +16,27 @@
  * Allows a button to be clicked successively in order to
  * display a personal summary, then a photograph. 
  */
-
 function showNext() {
   const summaryContainer = document.getElementById('summary');
   const imageContainer = document.getElementById('picture');
   if (summaryContainer.innerText.length == 0) {
     showSummary();
-    } else if (imageContainer.childElementCount == 0) { 
-      showPicture();
-    }
+  } else if (imageContainer.childElementCount == 0) { 
+    showPicture();
+  }
 }
 
 function showSummary(){
   const summaryContainer = document.getElementById('summary');
-  const summaryText = "Currently, I'm a 2nd year student"+ 
-  " at the Rose-Hulman Institute of Technology working towards a bachelor"+
-  " in Computer Science. I grew up in Louisville, Kentucky and moved on to"+
-  " college early.I completed two years at Western Kentucky University while"+
-  " simultaneously obtaining my highschool diploma. The summer of my graduation"+
-  " I was accepted as a Google CSSI student and spent 3 weeks at the Google Cambridge"+
-  " Office. A year later and I am now working as a virtual Google intern in my"+
-  " hometown of Louisville."
+  const summaryText = 'Currently, I\'m a 2nd year student' + 
+  ' at the Rose-Hulman Institute of Technology working towards' +
+  ' a bachelor in Computer Science. I grew up in Louisville,' +
+  ' Kentucky and moved on to college early.I completed two years' +
+  ' at Western Kentucky University while simultaneously obtaining' +
+  ' my highschool diploma. The summer of my graduation I was' +
+  ' accepted as a Google CSSI student and spent 3 weeks at the' +
+  ' Google Cambridge Office. A year later and I am now working' +
+  ' as a virtual Google intern in my hometown of Louisville.';
   summaryContainer.innerText = summaryText;
 }
 

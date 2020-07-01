@@ -31,7 +31,7 @@ function showSummary(){
   const summaryText = 'Currently, I\'m a 2nd year student' + 
   ' at the Rose-Hulman Institute of Technology working towards' +
   ' a bachelor in Computer Science. I grew up in Louisville,' +
-  ' Kentucky and moved on to college early.I completed two years' +
+  ' Kentucky and moved on to college early. I completed two years' +
   ' at Western Kentucky University while simultaneously obtaining' +
   ' my highschool diploma. The summer of my graduation I was' +
   ' accepted as a Google CSSI student and spent 3 weeks at the' +
@@ -51,8 +51,10 @@ function showPicture(){
 }
 
 function getServerData(){
-  fetch('/data').then(response => response.json()).then((messages) => {
+  fetch('/data').then(response => response.json()).then((comments) => {
     const serverContainer = document.getElementById('server-container');
-    serverContainer.innerText = messages[Math.floor(Math.random()*5)];
+    let text = comments[Math.floor(Math.random() * comments.length)];
+     
+    serverContainer.innerHTML = "<Strong>" + text.name + "</Strong>: " + text.comment;
   });
 }

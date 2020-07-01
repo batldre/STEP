@@ -50,8 +50,9 @@ function showPicture(){
   imageContainer.appendChild(imgElement);    
 }
 
-function sayHello(){
-  fetch('/data').then(response => response.text()).then((statement) => {
-    document.getElementById('server-container').innerText = statement;
+function getServerData(){
+  fetch('/data').then(response => response.json()).then((messages) => {
+    const serverContainer = document.getElementById('server-container');
+    serverContainer.innerText = messages[Math.floor(Math.random()*5)];
   });
 }

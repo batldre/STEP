@@ -59,6 +59,11 @@ function getDatastoreComments(){
   });
 }
 
+/**
+ * Creates a small box which shows a user's name and comment.
+ * Also includes a button to delete the box and the information
+ * from the datastore. 
+ */
 function createCommentBox(comment) {
   const boxElement = document.createElement('div');
   boxElement.className = 'boxes';

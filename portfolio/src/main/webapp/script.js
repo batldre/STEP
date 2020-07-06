@@ -50,11 +50,43 @@ function showPicture(){
   imageContainer.appendChild(imgElement);    
 }
 
-function getServerData(){
+function getDatastoreComments(){
   fetch('/data').then(response => response.json()).then((comments) => {
     const serverContainer = document.getElementById('server-container');
-    let text = comments[Math.floor(Math.random() * comments.length)];
-     
-    serverContainer.innerHTML = "<Strong>" + text.name + "</Strong>: " + text.comment;
+    comments.forEach((comment) => {
+      serverContainer.appendChild(createCommentBox(comment));
+    })
   });
+}
+
+function createCommentBox(comment) {
+  const boxElement = document.createElement('div');
+  boxElement.className = 'boxes';
+
+  const nameElement = document.createElement('strong');
+  nameElement.innerText = comment.userName;
+  nameElement.style.textDecoration = "underline";
+  nameElement.style.textAlign = 'center';
+
+  const commentElement = document.createElement('p');
+  commentElement.innerText = comment.text;
+  commentElement.style.textAlign = 'center';
+
+  const deleteButtonElement = document.createElement('button');
+  deleteButtonElement.innerText = 'Delete';
+  deleteButtonElement.addEventListener('click', () => {
+    deleteComment(comment);
+    boxElement.remove();
+  });
+
+  boxElement.appendChild(nameElement);
+  boxElement.appendChild(commentElement);
+  boxElement.appendChild(deleteButtonElement);
+  return boxElement;
+}
+
+function deleteComment(comment) {
+  const params = new URLSearchParams();
+  params.append('id', comment.id);
+  fetch('/delete-comment', {method: 'POST', body: params});
 }

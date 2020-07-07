@@ -50,9 +50,26 @@ function showPicture(){
   imageContainer.appendChild(imgElement);    
 }
 
+/**
+ * Alerts the user when they have failed to fill out all required
+ * input fields.
+ */
+function required() {
+    var nameElement = document.forms["form1"]["user-name"].value;
+    var commentElement = document.forms["form1"]["user-comment"].length;
+    console.log(commentElement);
+    if (nameElement == "" || nameElement == null){
+    
+      alert("Please complete all required fields!");
+      return false;
+    }
+    return true;
+}
+
 function getDatastoreComments(){
   fetch('/data').then(response => response.json()).then((comments) => {
     const serverContainer = document.getElementById('server-container');
+    serverContainer.innerHTML = '';
     comments.forEach((comment) => {
       serverContainer.appendChild(createCommentBox(comment));
     })
@@ -69,13 +86,12 @@ function createCommentBox(comment) {
   boxElement.className = 'boxes';
 
   const nameElement = document.createElement('strong');
+  nameElement.className = 'userName';
   nameElement.innerText = comment.userName;
-  nameElement.style.textDecoration = "underline";
-  nameElement.style.textAlign = 'center';
 
   const commentElement = document.createElement('p');
+  commentElement.className = 'userComment';
   commentElement.innerText = comment.text;
-  commentElement.style.textAlign = 'center';
 
   const deleteButtonElement = document.createElement('button');
   deleteButtonElement.innerText = 'Delete';

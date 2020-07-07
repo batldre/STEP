@@ -68,5 +68,14 @@ body {
   width: 300px;
 }
 
+.userName {
+    text-decoration: underline;
+    text-align: center;
+}
+
+.userComment {
+    text-align: center;
+}
+
 
 

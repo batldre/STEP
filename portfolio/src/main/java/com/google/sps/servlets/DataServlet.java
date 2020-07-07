@@ -30,30 +30,29 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 
+/** Servlet that communicates with the datastore, sending and recieving user data.*/
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-    
+  private DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();;
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String userName = request.getParameter("user-name");
     String userComment = request.getParameter("user-comment");
     long timestamp = System.currentTimeMillis();
 
-    Entity commentEntity = new Entity("Comment");
-    commentEntity.setProperty("user-name", userName);
-    commentEntity.setProperty("user-comment",userComment);
-    commentEntity.setProperty("timestamp", timestamp);
-
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    datastore.put(commentEntity);
-
+    if (userName.length() != 0 && userComment.length() != 0) { 
+      Entity commentEntity = new Entity("Comment");
+      commentEntity.setProperty("user-name", userName);
+      commentEntity.setProperty("user-comment",userComment);
+      commentEntity.setProperty("timestamp", timestamp);
+      datastore.put(commentEntity);
+    }
     response.sendRedirect("/index.html");
   }
 
   @Override 
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
     List<Comment> comments = new ArrayList<>();
 

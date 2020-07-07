@@ -32,22 +32,7 @@ import java.util.List;
 
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-
-//   private String convertToJson(HashMap<String, String> comments) {
-//     String json = "[";
-//     for (Map.Entry<String, String> entry: comments.entrySet()) {
-//       String name = entry.getKey();
-//       String comment = entry.getValue();
-//       json += "{\"name\": ";
-//       json +=  "\"" + name + "\", "; 
-//       json += "\"comment\": ";
-//       json +=  "\"" + comment + "\"}, "; 
-//     }
-//     json = json.substring(0, json.length() - 2);
-//     json += "]";
-//     return json;
-//   }
-
+    
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String userName = request.getParameter("user-name");

@@ -55,11 +55,10 @@ function showPicture(){
  * input fields.
  */
 function required() {
-    var nameElement = document.forms["form1"]["user-name"].value;
-    var commentElement = document.forms["form1"]["user-comment"].length;
+    var nameElement = document.forms['form1']['user-name'].value;
+    var commentElement = document.forms['form1']['user-comment'].length;
     console.log(commentElement);
-    if (nameElement == "" || nameElement == null){
-    
+    if (nameElement.trim() == '' || commentElement.trim() == ''){
       alert("Please complete all required fields!");
       return false;
     }
@@ -73,6 +72,27 @@ function getDatastoreComments(){
     comments.forEach((comment) => {
       serverContainer.appendChild(createCommentBox(comment));
     })
+  });
+}
+
+function showComments() {
+  fetch('/login').then(response => response.json()).then((status) => {
+    const headerContainer = document.getElementById('header');
+    if (headerContainer.childElementCount == 3) {
+      const link = document.createElement('a');
+      link.innerText = status[2];
+      link.href = status[1];
+      headerContainer.appendChild(link);
+    }
+    
+    if (status[0].trim() == 'Signed In'){  
+      const serverContainer = document.getElementById('server-container');
+      const form = document.forms['form1'];
+      form.style.visibility = 'visible';
+      serverContainer.style.display = 'inline';
+    } else {
+      alert("Please sign in using the link above.");
+    }
   });
 }
 

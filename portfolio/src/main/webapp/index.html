@@ -19,14 +19,14 @@
         <p>Click continue to see content</p>
         <button class="button" onclick="showNext()">Continue</button>
         <button class="button" onclick="getDatastoreComments()">Show Comments</button>
-        <form name="form1" action="/data" method="POST">
+        <form name="form1" action="/data" method="POST" onclick="required(event)">
             <strong>Please enter your name</strong> 
             <br/></br>
-            <input  type="text" name="user-name" onsubmit="required()">
+            <input  type="text" name="user-name">
             <br/></br>
             <strong>Leave a thoughtful comment</strong> 
             <br/></br>
-            <input type="text" name="user-comment" onsubmit="required()">
+            <input type="text" name="user-comment">
             <br/></br>
             <input type="submit" />
         </form>

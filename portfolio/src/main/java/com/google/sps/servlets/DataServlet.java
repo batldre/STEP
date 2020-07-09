@@ -40,13 +40,12 @@ public class DataServlet extends HttpServlet {
     String userComment = request.getParameter("user-comment");
     long timestamp = System.currentTimeMillis();
 
-    if (userName.length() != 0 && userComment.length() != 0) { 
-      Entity commentEntity = new Entity("Comment");
-      commentEntity.setProperty("user-name", userName);
-      commentEntity.setProperty("user-comment",userComment);
-      commentEntity.setProperty("timestamp", timestamp);
-      datastore.put(commentEntity);
-    }
+    Entity commentEntity = new Entity("Comment");
+    commentEntity.setProperty("user-name", userName);
+    commentEntity.setProperty("user-comment",userComment);
+    commentEntity.setProperty("timestamp", timestamp);
+    datastore.put(commentEntity);
+    
     response.sendRedirect("/index.html");
   }
 

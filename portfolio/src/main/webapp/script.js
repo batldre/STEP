@@ -54,15 +54,20 @@ function showPicture(){
  * Alerts the user when they have failed to fill out all required
  * input fields.
  */
-function required() {
-    var nameElement = document.forms['form1']['user-name'].value;
-    var commentElement = document.forms['form1']['user-comment'].length;
-    console.log(commentElement);
-    if (nameElement.trim() == '' || commentElement.trim() == ''){
+function required(event) {
+    const nameElement = document.forms['form1']['user-name'].value;
+    const commentElement = document.forms['form1']['user-comment'].value;
+    const submitButton = document.forms['form1'];
+    if (isEmpty(nameElement) || isEmpty(commentElement)){
+      event.preventDefault();
       alert("Please complete all required fields!");
       return false;
     }
     return true;
+}
+
+function isEmpty(str){
+    return (str == ''||!str);
 }
 
 function getDatastoreComments(){

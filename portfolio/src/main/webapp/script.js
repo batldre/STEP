@@ -85,12 +85,12 @@ function showComments() {
     const headerContainer = document.getElementById('header');
     if (headerContainer.childElementCount == 3) {
       const link = document.createElement('a');
-      link.innerText = status[2];
-      link.href = status[1];
+      link.innerText = status.titleText;
+      link.href = status.url;
       headerContainer.appendChild(link);
     }
     
-    if (status[0].trim() == 'Signed In'){  
+    if (status.signedIn == true){  
       const serverContainer = document.getElementById('server-container');
       const form = document.forms['form1'];
       form.style.visibility = 'visible';

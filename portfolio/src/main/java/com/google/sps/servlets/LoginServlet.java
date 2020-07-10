@@ -27,32 +27,36 @@ import com.google.gson.Gson;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
+    
+  public class LoginInfo {
+    Boolean signedIn;
+    String url;
+    String titleText;
+  }
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String[] loginStatus = new String[3];
-
     UserService userService = UserServiceFactory.getUserService();
+    LoginInfo currentStatus = new LoginInfo();
+
     if (userService.isUserLoggedIn()) {
       response.setContentType("text/plain;charset=UTF-8");
       String userEmail = userService.getCurrentUser().getEmail();
       String urlToRedirectToAfterUserLogsOut = "/";
       String logoutUrl = userService.createLogoutURL(urlToRedirectToAfterUserLogsOut);
-      
-      loginStatus[0] = "Signed In";
-      loginStatus[1] = logoutUrl;
-      loginStatus[2] = "Logout Here";
+      currentStatus.signedIn = true;
+      currentStatus.url = logoutUrl;
+      currentStatus.titleText = "Logout Here";
 
     } else {
       response.setContentType("text/html");
       String urlToRedirectToAfterUserLogsIn = "/";
       String loginUrl = userService.createLoginURL(urlToRedirectToAfterUserLogsIn);
-
-      loginStatus[0] = "Logged Out";
-      loginStatus[1] = loginUrl;
-      loginStatus[2] = "Login Here";
+      currentStatus.signedIn = false;
+      currentStatus.url = loginUrl;
+      currentStatus.titleText = "Login Here";
     }
     Gson gson = new Gson();
-    response.getWriter().println(gson.toJson(loginStatus));
+    response.getWriter().println(gson.toJson(currentStatus));
   }
 }

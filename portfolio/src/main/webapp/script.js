@@ -58,7 +58,7 @@ function required(event) {
   const nameElement = document.forms['form1']['user-name'].value;
   const commentElement = document.forms['form1']['user-comment'].value;
   const submitButton  = document.forms['form1']; 
-  if (isEmpty(nameElement) || isEmpty(nameElement)){
+  if (isEmpty(nameElement) || isEmpty(commentElement)){
     event.preventDefault();
     alert("Please complete all required fields!");
     return false;

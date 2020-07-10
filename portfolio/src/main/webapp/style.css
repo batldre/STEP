@@ -37,6 +37,10 @@ body {
   margin-top: 20px;
 }
 
+#server-container {
+    display: inline;
+}
+
 .button {
   background-color: rgb(255 ,255, 255); /* Green */
   border: 2px solid black;
@@ -56,6 +60,22 @@ body {
   border: 2px solid black;
 }
 
+.boxes {
+  display: inline-block;
+  border: solid rgb(140, 0, 255);
+  margin: 10px;
+  padding: 10px;
+  width: 300px;
+}
+
+.userName {
+    text-decoration: underline;
+    text-align: center;
+}
+
+.userComment {
+    text-align: center;
+}
 
 
 

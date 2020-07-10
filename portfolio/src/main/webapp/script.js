@@ -31,7 +31,7 @@ function showSummary(){
   const summaryText = 'Currently, I\'m a 2nd year student' + 
   ' at the Rose-Hulman Institute of Technology working towards' +
   ' a bachelor in Computer Science. I grew up in Louisville,' +
-  ' Kentucky and moved on to college early.I completed two years' +
+  ' Kentucky and moved on to college early. I completed two years' +
   ' at Western Kentucky University while simultaneously obtaining' +
   ' my highschool diploma. The summer of my graduation I was' +
   ' accepted as a Google CSSI student and spent 3 weeks at the' +
@@ -50,8 +50,67 @@ function showPicture(){
   imageContainer.appendChild(imgElement);    
 }
 
-function sayHello(){
-  fetch('/data').then(response => response.text()).then((statement) => {
-    document.getElementById('server-container').innerText = statement;
+/**
+ * Alerts the user when they have failed to fill out all required
+ * input fields.
+ */
+function required(event) {
+  const nameElement = document.forms['form1']['user-name'].value;
+  const commentElement = document.forms['form1']['user-comment'].value;
+  const submitButton  = document.forms['form1']; 
+  if (isEmpty(nameElement) || isEmpty(commentElement)){
+    event.preventDefault();
+    alert("Please complete all required fields!");
+    return false;
+  }
+  return true;
+}
+
+function isEmpty(str) {
+  return (!str || str == '');
+}
+function getDatastoreComments(){
+  fetch('/data').then(response => response.json()).then((comments) => {
+    const serverContainer = document.getElementById('server-container');
+    serverContainer.innerHTML = '';
+    comments.forEach((comment) => {
+      serverContainer.appendChild(createCommentBox(comment));
+    })
   });
+}
+
+/**
+ * Creates a small box which shows a user's name and comment.
+ * Also includes a button to delete the box and the information
+ * from the datastore. 
+ */
+function createCommentBox(comment) {
+  const boxElement = document.createElement('div');
+  boxElement.className = 'boxes';
+
+  const nameElement = document.createElement('strong');
+  nameElement.className = 'userName';
+  nameElement.innerText = comment.userName;
+
+  const commentElement = document.createElement('p');
+  commentElement.className = 'userComment';
+  commentElement.innerText = comment.text;
+
+  const deleteButtonElement = document.createElement('button');
+  deleteButtonElement.innerText = 'Delete';
+  deleteButtonElement.addEventListener('click', () => {
+    deleteComment(comment);
+    boxElement.remove();
+  });
+
+  boxElement.appendChild(nameElement);
+  boxElement.appendChild(commentElement);
+  boxElement.appendChild(deleteButtonElement);
+  return boxElement;
+}
+
+function deleteComment(comment) {
+  const params = new URLSearchParams();
+  params.append('id', comment.id);
+  fetch('/delete-comment', {method: 'POST', body: params});
 }

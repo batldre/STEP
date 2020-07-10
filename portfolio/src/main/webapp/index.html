@@ -10,16 +10,26 @@
     <body>
         <div id="header">
             <a href="https://github.com/batldre">Github</a>
-            <a href="https://www.linkedin.com/in/andre-battle-4844b4190">LinkedIn</a>
+            <a href="https://www.linkedin.com/in/andre-battle-4844b4190?trk=people-guest_people_search-card">Linkedin</a>
             <h1>Portfolio</h1>
         </div>
         <div id="content">
         <strong><div id="summary"> </div>Hello, My name is<div id="picture"></div> </strong>
         <h1>Andre Battle</h1>
-        <p>This is my portfolio.</p>
-        <p>Click here to see content:</p>
-        <button class="button" onclick = "showNext()">Continue</button>
-        <button class="button" onclick="sayHello()">Server Button</button>
+        <p>Click continue to see content</p>
+        <button class="button" onclick="showNext()">Continue</button>
+        <button class="button" onclick="getDatastoreComments()">Show Comments</button>
+        <form name="form1" action="/data" method="POST" onclick="required(event)">
+            <strong>Please enter your name</strong> 
+            <br/></br>
+            <input  type="text" name="user-name">
+            <br/></br>
+            <strong>Leave a thoughtful comment</strong> 
+            <br/></br>
+            <input type="text" name="user-comment">
+            <br/></br>
+            <input type="submit" />
+        </form>
         <div id="server-container"></div>
         </div>
     </body>

@@ -28,7 +28,7 @@ import com.google.gson.Gson;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
     
-  public class LoginInfo {
+  private class LoginInfo {
     Boolean signedIn;
     String url;
     String titleText;

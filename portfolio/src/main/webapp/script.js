@@ -67,7 +67,7 @@ function required(event) {
 }
 
 function isEmpty(str){
-    return (str == ''||!str);
+    return (str == '' || !str);
 }
 
 function getDatastoreComments(){
@@ -83,6 +83,8 @@ function getDatastoreComments(){
 function showComments() {
   fetch('/login').then(response => response.json()).then((status) => {
     const headerContainer = document.getElementById('header');
+    // The header only contains 3 elements by default. This if statement
+    // prevents more than 1 login/logout link to be appended.
     if (headerContainer.childElementCount == 3) {
       const link = document.createElement('a');
       link.innerText = status.titleText;

@@ -19,9 +19,12 @@
 function showNext() {
   const summaryContainer = document.getElementById('summary');
   const imageContainer = document.getElementById('picture');
+  const contentButton = document.getElementById('content-button');
   if (summaryContainer.innerText.length == 0) {
+    contentButton.innerHTML = 'Click Again';
     showSummary();
   } else if (imageContainer.childElementCount == 0) { 
+    contentButton.style.display = 'none';
     showPicture();
   }
 }

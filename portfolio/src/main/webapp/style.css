@@ -7,6 +7,9 @@ body {
   font-size: 22px;
 }
 
+form {
+    visibility: hidden;
+}
 #content {
   padding-top: 20px;
   text-align: center;
@@ -38,7 +41,7 @@ body {
 }
 
 #server-container {
-    display: inline;
+    display: none;
 }
 
 .button {

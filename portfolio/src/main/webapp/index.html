@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="style.css">
         <script src="script.js"></script>
     </head>
-    <body>
+    <body onload="getDatastoreComments()">
         <div id="header">
             <a href="https://github.com/batldre">Github</a>
             <a href="https://www.linkedin.com/in/andre-battle-4844b4190?trk=people-guest_people_search-card">Linkedin</a>
@@ -18,8 +18,8 @@
         <h1>Andre Battle</h1>
         <p>Click continue to see content</p>
         <button class="button" onclick="showNext()">Continue</button>
-        <button class="button" onclick="getDatastoreComments()">Show Comments</button>
-        <form name="form1" action="/data" method="POST" onclick="required(event)">
+        <button class="button" onclick="showComments()">Show Comments</button>
+        <form name="form1" action="/data" method="POST" onsubmit="required(event)">
             <strong>Please enter your name</strong> 
             <br/></br>
             <input  type="text" name="user-name">
@@ -28,8 +28,9 @@
             <br/></br>
             <input type="text" name="user-comment">
             <br/></br>
-            <input type="submit" />
+            <input type="submit"/>
         </form>
+        <hr>
         <div id="server-container"></div>
         </div>
     </body>

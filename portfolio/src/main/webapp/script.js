@@ -55,20 +55,21 @@ function showPicture(){
  * input fields.
  */
 function required(event) {
-  const nameElement = document.forms['form1']['user-name'].value;
-  const commentElement = document.forms['form1']['user-comment'].value;
-  const submitButton  = document.forms['form1']; 
-  if (isEmpty(nameElement) || isEmpty(commentElement)){
-    event.preventDefault();
-    alert("Please complete all required fields!");
-    return false;
-  }
-  return true;
+    const nameElement = document.forms['form1']['user-name'].value;
+    const commentElement = document.forms['form1']['user-comment'].value;
+    const submitButton = document.forms['form1'];
+    if (isEmpty(nameElement) || isEmpty(commentElement)){
+      event.preventDefault();
+      alert("Please complete all required fields!");
+      return false;
+    }
+    return true;
 }
 
-function isEmpty(str) {
-  return (!str || str == '');
+function isEmpty(str){
+    return (str == '' || !str);
 }
+
 function getDatastoreComments(){
   fetch('/data').then(response => response.json()).then((comments) => {
     const serverContainer = document.getElementById('server-container');
@@ -76,6 +77,29 @@ function getDatastoreComments(){
     comments.forEach((comment) => {
       serverContainer.appendChild(createCommentBox(comment));
     })
+  });
+}
+
+function showComments() {
+  fetch('/login').then(response => response.json()).then((status) => {
+    const headerContainer = document.getElementById('header');
+    // The header only contains 3 elements by default. This if statement
+    // prevents more than 1 login/logout link to be appended.
+    if (headerContainer.childElementCount == 3) {
+      const link = document.createElement('a');
+      link.innerText = status.titleText;
+      link.href = status.url;
+      headerContainer.appendChild(link);
+    }
+    
+    if (status.signedIn == true){  
+      const serverContainer = document.getElementById('server-container');
+      const form = document.forms['form1'];
+      form.style.visibility = 'visible';
+      serverContainer.style.display = 'inline';
+    } else {
+      alert("Please sign in using the link above.");
+    }
   });
 }
 

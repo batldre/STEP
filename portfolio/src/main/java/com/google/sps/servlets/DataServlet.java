@@ -33,7 +33,7 @@ import java.util.List;
 /** Servlet that communicates with the datastore, sending and recieving user data.*/
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-  private DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();;
+  private DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String userName = request.getParameter("user-name");
@@ -45,7 +45,6 @@ public class DataServlet extends HttpServlet {
     commentEntity.setProperty("user-comment",userComment);
     commentEntity.setProperty("timestamp", timestamp);
     datastore.put(commentEntity);
-    
     response.sendRedirect("/index.html");
   }
 
